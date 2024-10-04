@@ -1,6 +1,7 @@
 package com.bibitdev.myintentapp
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -15,6 +16,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
+        // INISIALISASI
+
         // button pindah activity
         val btnMoveActivity: Button = findViewById(R.id.btn_move_activity)
         btnMoveActivity.setOnClickListener(this)
@@ -26,6 +29,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         // button pindah activity dengan objek
         val btnMoveWithObject : Button = findViewById(R.id.btn_move_activity_object)
         btnMoveWithObject.setOnClickListener(this)
+
+        // button implicit intent
+        val btnDialPhone : Button = findViewById(R.id.btn_dial_number)
+        btnDialPhone.setOnClickListener(this)
 
     }
 
@@ -55,6 +62,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 val moveWithObjectIntent = Intent(this@MainActivity, MoveWithObjectActivity::class.java)
                 moveWithObjectIntent.putExtra(MoveWithObjectActivity.EXTRA_PERSON, person)
                 startActivity(moveWithObjectIntent)
+            }
+
+            R.id.btn_dial_number -> {
+                val phoneNumber = "081918842763"
+                val dialNumberPhone = Intent(Intent.ACTION_DIAL, Uri.parse("tel : ${phoneNumber}"))
+                startActivity(dialNumberPhone)
             }
         }
     }
