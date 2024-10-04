@@ -15,11 +15,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
+        // button pindah activity
         val btnMoveActivity: Button = findViewById(R.id.btn_move_activity)
         btnMoveActivity.setOnClickListener(this)
 
+        // button pindah activity dengan data
         val btnMoveWithDataActivity: Button = findViewById(R.id.btn_move_activity_data)
         btnMoveWithDataActivity.setOnClickListener(this)
+
+        // button pindah activity dengan objek
+        val btnMoveWithObject : Button = findViewById(R.id.btn_move_activity_object)
+        btnMoveWithObject.setOnClickListener(this)
+
     }
 
     override fun onClick(v: View?) {
@@ -35,6 +42,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 moveWithDataIntent.putExtra(MoveWithDataActivity.EXTRA_NAME, "Raikhan")
                 moveWithDataIntent.putExtra(MoveWithDataActivity.EXTRA_AGE, 12)
                 startActivity(moveWithDataIntent)
+            }
+
+            R.id.btn_move_activity_object -> {
+                val person = Person(
+                    "Bibit Raikhan Azzaki",
+                    12,
+                    "bibitraikhanazzaki@gmail.com",
+                    "Banjarnegara"
+                )
+
+                val moveWithObjectIntent = Intent(this@MainActivity, MoveWithObjectActivity::class.java)
+                moveWithObjectIntent.putExtra(MoveWithObjectActivity.EXTRA_PERSON, person)
+                startActivity(moveWithObjectIntent)
             }
         }
     }
